@@ -1,0 +1,42 @@
+// Boundary conditions.
+    // Heavy Fluid
+    OnLatticeBoundaryCondition2D<T,DESCRIPTOR>*
+        boundaryCondition1 = createLocalBoundaryCondition2D<T,DESCRIPTOR>();
+    //vertical Pipe inlet:
+    Box2D inlet1H(Nw, Nw+w1-1, Ny-1, Ny-1);
+    boundaryCondition1->addVelocityBoundary1P(inlet1H, heavyFluid, boundary::outflow);
+    boundaryCondition1->addExternalVelocityCornerNP(Nw-1,Ny-1, heavyFluid, boundary::outflow);
+    boundaryCondition1->addExternalVelocityCornerPP(Nw+w1,Ny-1, heavyFluid, boundary::outflow);
+    //horizontal pipe inlet:
+    Box2D inlet2H(0, 0, 1, w2-2);
+    boundaryCondition1->addVelocityBoundary0N(inlet2H, heavyFluid);
+    boundaryCondition1->addExternalVelocityCornerNP(0,0, heavyFluid);
+    boundaryCondition1->addExternalVelocityCornerNN(0,w2-1, heavyFluid);
+    Box2D leftH(0,0, 0,w2-1);
+    setBoundaryVelocity(heavyFluid, leftH, Array<T,2>(v2,0.));
+    //horizontal pipe outletH:
+    Box2D outletH(Nx-1,Nx-1, 1,w2-2);
+    boundaryCondition1->addVelocityBoundary0P(outletH, heavyFluid, boundary::outflow);
+    boundaryCondition1->addExternalVelocityCornerPP(Nx-1, 0, heavyFluid, boundary::outflow);
+    boundaryCondition1->addExternalVelocityCornerPN(Nx-1, w2-1, heavyFluid, boundary::outflow);
+
+    //Light Fluid
+    OnLatticeBoundaryCondition2D<T,DESCRIPTOR>*
+        boundaryCondition2 = createLocalBoundaryCondition2D<T,DESCRIPTOR>();
+    //vertical Pipe inlet:
+    Box2D inlet1L(Nw, Nw+w1-1, Ny-1, Ny-1);
+    boundaryCondition2->addVelocityBoundary1P(inlet1L, lightFluid);
+    boundaryCondition2->addExternalVelocityCornerNP(Nw-1,Ny-1, lightFluid);
+    boundaryCondition2->addExternalVelocityCornerPP(Nw+w1,Ny-1, lightFluid);
+    Box2D topL(Nw-1, Nw+w1, Ny-1, Ny-1);
+    setBoundaryVelocity(lightFluid, topL, Array<T,2>(0.,-v1));
+    //horizontal pipe inlet:
+    Box2D inlet2L(0, 0, 1, w2-2);
+    boundaryCondition2->addVelocityBoundary0N(inlet2L, lightFluid,boundary::outflow);
+    boundaryCondition2->addExternalVelocityCornerNP(0,0, lightFluid,boundary::outflow);
+    boundaryCondition2->addExternalVelocityCornerNN(0,w2-1, lightFluid,boundary::outflow);
+    //horizontal pipe outletL:
+    Box2D outletL(Nx-1,Nx-1, 1,w2-2);
+    boundaryCondition2->addVelocityBoundary0P(outletL, lightFluid, boundary::outflow);
+    boundaryCondition2->addExternalVelocityCornerPP(Nx-1, 0, lightFluid, boundary::outflow);
+    boundaryCondition2->addExternalVelocityCornerPN(Nx-1, w2-1, lightFluid, boundary::outflow);
