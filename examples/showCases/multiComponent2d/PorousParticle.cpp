@@ -113,13 +113,13 @@ int main(int argc, char *argv[])
     global::directories().setOutputDir("./tmp/");
     srand(global::mpi().getRank());
     util::delete_path("./tmp/");
-    const T vIn = 1.e-3;
+    const T vIn = 1.e-2;
     const T G = 2.2;
     T rho0 = 0.6;
     T rho1 = 1-rho0;
     const plint maxIter = 50000;
-    const plint saveIter = 10;
-    const plint statIter = 10;
+    const plint saveIter = 100;
+    const plint statIter = 100;
 
     const T omega1 = 1.;
     const T omega2 = 1.;

@@ -20,7 +20,7 @@ palabosRoot  = ../../..
 #projectFiles = rayleighTaylor2D.cpp
 #projectFiles = wetting.cpp
 #projectFiles = wettingChannel.cpp
-projectFiles = PorousParticle.cpp
+projectFiles = PorousParticle_1.cpp
 
 # Set optimization flags on/off
 optimize     = true

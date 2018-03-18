@@ -9,7 +9,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/PorousParticle",
+            "program": "${workspaceRoot}/PorousParticle_1",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
