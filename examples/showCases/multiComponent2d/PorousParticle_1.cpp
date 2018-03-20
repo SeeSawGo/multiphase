@@ -21,11 +21,11 @@ typedef double T;
 //   the external force term.
 #define DESCRIPTOR descriptors::ForcedShanChenD2Q9Descriptor
 
-plint Nx = 2462;
-plint Ny = 2462;
+plint Nx = 1847;
+plint Ny = 2847;
 T rhoH = 1.0;
 T rhoL = 0.8;
-plint hini = 700;
+plint hini = 500;
 Box2D inlet(0, Nx-1, 0, 0);
 Box2D outlet(0,Nx-1, Ny-1, Ny-1);
 
@@ -117,15 +117,15 @@ int main(int argc, char *argv[])
     srand(global::mpi().getRank());
     util::delete_path("./tmp/");
     const T vIn = 1.e-2;
-    const T G = 1.;
+    const T G = 1.5;
     T rho0 = 0.5;
     T rho1 = 1-rho0;
     const plint maxIter = 100000;
     const plint saveIter = 100;
     const plint statIter = 100;
 
-    const T omega1 = 0.5;
-    const T omega2 = 0.5;
+    const T omega1 = 1;
+    const T omega2 = 1;
 
     MultiScalarField2D<bool> boolMask(Nx, Ny);
 
